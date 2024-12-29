@@ -20,7 +20,7 @@
 //     return (
 //         <View style={styles.container}>
 //             <Text style={styles.title}>Register</Text>
-            
+
 //             <TextInput
 //                 style={styles.input}
 //                 placeholder="Email"
@@ -60,6 +60,7 @@ import {
 import { images } from "../constants";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useRouter, Link } from "expo-router";
+import CustomAlert from "./customAlert";
 
 const Register = () => {
   const [username, setUsername] = useState("");
@@ -67,19 +68,26 @@ const Register = () => {
   const [password, setPassword] = useState("");
   const [isFocused, setIsFocused] = useState({ username: false, email: false, password: false });
   const [isLoading, setIsLoading] = useState(false);
+  const [alertVisible, setAlertVisible] = useState(false);
+  const [alertMessage, setAlertMessage] = useState('');
   const router = useRouter();
 
   const handleRegister = () => {
     if (!username || !email || !password) {
-      alert("Please fill in all fields");
+      setAlertMessage("Please fill  all the  fields");
+      setAlertVisible(true);
       return;
     }
     setIsLoading(true);
     // Simulate API call or delay
     setTimeout(() => {
       setIsLoading(false);
-      alert("Registration successful");
-      router.push("/login");
+      setAlertMessage("Registration successful");
+      setAlertVisible(true);
+      // Navigate to login page after a short delay
+      setTimeout(() => {
+        router.push("/login");
+      }, 1500); // Delay before navigating
     }, 1000);
   };
 
@@ -87,7 +95,7 @@ const Register = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <View style={styles.view}>
-        <Image
+          <Image
             source={images.logo}
             resizeMode="contain"
             style={styles.logo}
@@ -177,6 +185,11 @@ const Register = () => {
               {isLoading ? "Registering..." : "Register"}
             </Text>
           </TouchableOpacity>
+          <CustomAlert
+            message={alertMessage}
+            isVisible={alertVisible}
+            onClose={() => setAlertVisible(false)}
+          />
 
           <View style={styles.smalltextview}>
             <Text style={styles.smalltext}>Already have an account?</Text>
@@ -206,8 +219,8 @@ const styles = StyleSheet.create({
     paddingHorizontal: 16, // Equivalent to `px-4` (4 * 4px = 16px)
   },
   logo: {
-    width: 200, 
-    height: 200, 
+    width: 200,
+    height: 200,
   },
   title: {
     fontSize: 30,
