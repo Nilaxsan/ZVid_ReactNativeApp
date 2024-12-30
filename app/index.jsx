@@ -4,7 +4,6 @@ import { StatusBar } from "expo-status-bar";
 import { Redirect, router } from "expo-router";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { images } from "../constants";
-import Video from 'react-native-video';
 
 
 export default function App() {   
@@ -12,7 +11,7 @@ export default function App() {
     <SafeAreaView style={styles.container}>
       <ScrollView contentContainerStyle={{ height: "100%" }}>
         <View style={styles.view}>
-        <Text style={styles.heading}> Welcome ZVid!</Text>
+        <Text style={styles.heading}> Welcome to  ZVid!</Text>
 
            <Image
             source={images.logo}
@@ -58,7 +57,7 @@ export default function App() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: "white", // Replace 'primary' with the actual color code or theme variable
+    backgroundColor: "#f4e6fa", 
     height: "100%", // Full height of the parent
   },
   view: {

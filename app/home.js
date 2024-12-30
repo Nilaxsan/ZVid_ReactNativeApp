@@ -98,8 +98,10 @@ const Home = () => {
     <SafeAreaView style={styles.container}>
       <ScrollView>
         <Text style={styles.header}>
-          Hi {username} 👋,
+          Hi {username} 👋
 
+        </Text>
+        <Text style={styles.header2}>
           Welcome to ZVid!
         </Text>
         <TouchableOpacity onPress={() => router.push("/login")}>
@@ -161,9 +163,15 @@ const styles = StyleSheet.create({
     color: '#a238d0', // Primary color
     fontFamily: 'psemibold',
   },
+  header2: {
+    fontSize: 20,
+    fontWeight: 'bold',
+    color: '#a238d0',
+    fontFamily: 'psemibold',
+  },
   logout: {
     position: 'absolute',
-    top: -25,
+    top: -50,
     right: 0,
     width: 30,
     height: 30,
